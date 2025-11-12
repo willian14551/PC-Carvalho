@@ -5,7 +5,8 @@ public abstract class Player {
     public Player(){}
     public Player(String nome){ this.nome=nome; }
 
-    // Getters e Setters
+    // Getters
     public String getNome() { return nome; }
+    // Setters
     public void setNome(String nome) { this.nome = nome; }
 }
