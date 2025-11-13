@@ -15,6 +15,9 @@ public class Box {
 
     // Getters
     public String getBoxName() { return boxName; }
+    public int getPokemonCount() {
+        return pokemonInBox.size();
+    }
 
     // Box com capacidade de 30 pokemons
     int tamanhoMax = 30;
