@@ -25,7 +25,8 @@ public abstract class PokemonBase {
         this.stats = new HashMap<>();
     }
 
-    // -- METODO ABSTRATO setStat
+
+    // -- METODO ABSTRATO setStat --
     // Permite que as classes filhas insiram os valores no atributo Map stats
     // Enquanto a classe pai será quem gerencia seu próprio atributo stats
     protected void setStat(String statName, int value){
@@ -34,29 +35,27 @@ public abstract class PokemonBase {
 
     // -- METODO ABSTRATO calculateStats
     // Força as classes filhas a implementar os cálculos de stauts
-    public abstract void calculateStats();
 
     // -- METODO levelup
     public void levelUp(){
         if (this.level < 100){
             this.level++;
-            this.calculateStats(); // Recalcula os stats quando upar de nível
         }
     }
 
-    // -- METODO setNickname
+    // -- METODO setNickname --
     // Metodo para permitir a alteração de nickname
-    public void setNickname(){
+    public void setNickname(String newNickname) {
         this.nickname = newNickname;
     }
 
-    public void displaySummary(){
+    public displaySummary(){
         if(this.isShiny) {
             String shinyMaker = "✨";
-            System.out.println(this.nickname + " (Lvl " + this.level + ")" + shinyMaker);
+            return this.nickname + " (Lvl " + this.level + ")" + shinyMaker);
         }
         else{
-            System.out.println(this.nickname + " (Lvl " + this.level + ")");
+            return this.nickname + " (Lvl " + this.level + ")");
         }
     }
 }

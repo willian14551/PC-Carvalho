@@ -1,64 +1,64 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map; // Importar o Map da interface
+import java.util.Map;
 
-// Classe filha da classe PokemonBase
 public class Pokemon extends PokemonBase {
 
-    // --- Atributos Específicos ---
+    // -- ATRIBUTOS ESPECIFICOS --
     private String type1;
     private String type2;
+
+    // 'List<Move>' = Lista de moves de um pokemon e o ArrayList para organizar
     private List<Move> moveset;
 
     // -- CONSTRUTOR --
+    // Recebe todos os parametros do pai e os seus proprios
     public Pokemon(
-            // Parâmetros para a classe pai
             int nationalNumber, String speciesName, int level, String gender,
-            String nickname, boolean isShiny,
+            String nickname, boolean isShiny, String type1, String type2, Map<String, Integer> stats) {
+        super(nationalNumber, speciesName, level, gender, nickname, isShiny, stats);
 
-            // Parâmetros para 'Pokemon' (Esta classe)
-            String type1, String type2,
-
-            // O Map de Stats vindo da Interface Gráfica (Futuro)
-            Map<String, Integer> stats
-    ) {
-
-        // 1. Chamar o construtor do Pai (super)
-        // Passa o Map de stats para o construtor do pai.
-        super(nationalNumber, speciesName, level, gender, nickname, isShiny, stats); // <-- MUDANÇA AQUI
-
-        // 2. Definir os atributos desta classe para o pai
+        // Definindo atributos dessa classe
         this.type1 = type1;
         this.type2 = type2;
+
+        // Inicializar 'this.moveset' como um novo ArrayList<>()
         this.moveset = new ArrayList<>();
     }
 
-     // -- POLIMORFISMO --
-    // Do metodo DisplaySummary
-    @Override
-    public String displaySummary() {
-        // Chame o método do pai para pegar a base
-        String baseSummary = super.displaySummary();
+    // --- SOBRESCRITA DE METODO (@Override) ---
+    // Modifica o displaySummary do pai
 
-        // Adicione as novas informações
+    @Override // Anotação para o java entender que é uma sobrescrita
+    public String displaySummary() {
+        String baseSummary = super.displaySummary(); // Chama metodo 'displaySummary()' da classe PAI (super).
+
         String fullSummary = baseSummary + "\n";
-        fullSummary += "  Tipo: " + this.type1;
-        if (this.type2 != null && !this.type2.isEmpty()) {
-            fullSummary += " / " + this.type2;
+        fullSummary += " Tipo: " + this.type1;
+
+        // If para verificar se o type 2 está vazio
+        if (this.type2 != null && !this.type2.isEmpty()){
+            fullSummary += "/" + this.type2;// Se não for vazio, vai adicionar o type2 no summary
         }
 
-        // getStats é herdado e pega o Map que foi salvo
-        fullSummary += "\n  Stats: " + getStats().toString();
+        // Os Stats serão acrescentados
+        fullSummary += "\n Stats: " + getStats().toString();
 
         return fullSummary;
     }
 
-    // --- Métodos Específicos ---
+    // --- METODO ESPECIFICO ---
+    // Metodo da classe Pokemon
+     // Metodo que adiciona um 'Move' ao moveset, com limite de 4
+
     public void learnMove(Move newMove) {
-        if (this.moveset.size() < 4) {
+
+        if (this.moveset.size() < 4){
             this.moveset.add(newMove);
-        } else {
-            System.out.println("Moveset está cheio!");
+            System.out.println(this.getNickname() + " aprendeu " + newMove.getMoveName() + "!");
+        }
+        else {
+            System.out.println(this.getNickname() + " já sabe 4 ataques!");
         }
     }
 }
