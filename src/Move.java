@@ -7,7 +7,8 @@ public class Move {
     private int pp;
 
     // Construtores
-    public void Move(){}
+    public Move(){}
+    public Move(String moveName, String moveType, int power, int pp) {}
     public void Move(String moveName, String moveType, int power, int pp){
         this.moveName=moveName;
         this.moveType=moveType;
@@ -32,20 +33,35 @@ public class Move {
     ArrayList<Move> movesPoke = new ArrayList<>(tamanhoMaxMove);
 
     // Mostra a lista dos moves
+    int i = 1;
     public void movesPoke(){
-        System.out.println("==============");
-        int i =0;
-        for (Move move : movesPoke){
-            System.out.println((i++)+". "+getMoveName());
-            System.out.println(getMoveType());
-            System.out.println(getPower());
-            System.out.println(getPp());
+        System.out.println("--------------");
+        if (movesPoke.isEmpty()){
+            System.out.println("O pokémon é muito novo para saber fazer alguma coisa . . .");
+        } else {
+            for (Move move : movesPoke){
+                System.out.println((i++)+". "+getMoveName());
+                System.out.println(getMoveType());
+                System.out.println(getPower());
+                System.out.println(getPp());
+                System.out.println("--------------");
+            }
         }
-        System.out.println("==============");
     }
 
     // Métodos
-    public void alterMove(String moveName){
+    public void alterMove(String moveName, String moveType, int power, int pp){
+        setMoveName(moveName);
+        setMoveType(moveType);
+        setPower(power);
+        setPp(pp);
+    }
 
+    public void addMoveToMovesPoke(String moveName, String moveType, int power, int pp){
+        setMoveName(moveName);
+        setMoveType(moveType);
+        setPower(power);
+        setPp(pp);
+        movesPoke.add(new Move(moveName, moveType, power, pp));
     }
 }
