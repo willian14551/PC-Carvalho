@@ -5,6 +5,7 @@ public class Move {
     private int pp;
 
     // Construtores
+    public Move(){}
     public Move(String moveName, String moveType, int power, int pp) {
         this.moveName = moveName;
         this.moveType = moveType;
@@ -25,10 +26,10 @@ public class Move {
     public void setPp(int pp) { this.pp = pp; }
 
     // Mostra a lista dos moves
-    // int i = 1;
+    int i = 1;
     public void movesPoke() {
         System.out.println("--------------");
-        System.out.println("Movimento: " + getMoveName());
+        System.out.println((i++)+". Movimento: " + getMoveName());
         System.out.println("Tipo: " + getMoveType());
         System.out.println("Poder: " + getPower());
         System.out.println("PP: " + getPp());
