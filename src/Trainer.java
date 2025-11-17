@@ -16,4 +16,4 @@ public class Trainer extends Player{
 
     // Setters
     public void setBadges(int badges) { this.badges = badges; }
-}
+    public void setStorage (storageSystem storage){ this.storage=storage; }
