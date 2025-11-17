@@ -1,9 +1,9 @@
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public abstract class PokemonBase {
 
-    // -- ATRIBUTOS --
     private int nationalNumber;
     private String speciesName;
     private int level;
@@ -12,50 +12,39 @@ public abstract class PokemonBase {
     private boolean isShiny;
     private Map<String, Integer> stats;
 
-    // -- CONSTRUTOR --
-    public PokemonBase(int nationalNumber, String speciesName, int level, String gender, String nickname, boolean isShiny){
+    public PokemonBase(int nationalNumber, String speciesName, int level,
+                       String gender, String nickname, boolean isShiny) {
         this.nationalNumber = nationalNumber;
         this.speciesName = speciesName;
         this.level = level;
         this.gender = gender;
         this.nickname = nickname;
         this.isShiny = isShiny;
-
-        // INICIALIZA O MAP PRIVADO
         this.stats = new HashMap<>();
     }
 
+    public int getNationalNumber() { return nationalNumber; }
+    public String getSpeciesName() { return speciesName; }
+    public int getLevel() { return level; }
+    public String getGender() { return gender; }
+    public String getNickname() { return nickname; }
+    public boolean isShiny() { return isShiny; }
+    public Map<String, Integer> getStats() { return stats; }
 
-    // -- METODO ABSTRATO setStat --
-    // Permite que as classes filhas insiram os valores no atributo Map stats
-    // Enquanto a classe pai será quem gerencia seu próprio atributo stats
-    protected void setStat(String statName, int value){
-        this.stats.put(statName, value);
-    }
+    public void setLevel(int level) { this.level = level; }
 
-    // -- METODO ABSTRATO calculateStats
-    // Força as classes filhas a implementar os cálculos de stauts
-
-    // -- METODO levelup
-    public void levelUp(){
-        if (this.level < 100){
-            this.level++;
-        }
-    }
-
-    // -- METODO setNickname --
-    // Metodo para permitir a alteração de nickname
     public void setNickname(String newNickname) {
         this.nickname = newNickname;
     }
 
-    public displaySummary(){
-        if(this.isShiny) {
-            String shinyMaker = "✨";
-            return this.nickname + " (Lvl " + this.level + ")" + shinyMaker);
-        }
-        else{
-            return this.nickname + " (Lvl " + this.level + ")");
-        }
+    public void setStats(Map<String, Integer> stats) {
+        this.stats = (stats != null) ? new HashMap<>(stats) : new HashMap<>();
+    }
+
+    public abstract void calcularStats(Scanner sc);
+
+    public String displaySummary() {
+        String shinyMarker = isShiny ? " ✨" : "";
+        return nickname + " (Lvl " + level + ")" + shinyMarker;
     }
 }

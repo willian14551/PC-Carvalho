@@ -1,63 +1,82 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
+import java.util.Scanner;
 
 public class Pokemon extends PokemonBase {
 
-    // -- ATRIBUTOS ESPECIFICOS --
     private String type1;
     private String type2;
 
-    // 'List<Move>' = Lista de moves de um pokemon e o ArrayList para organizar
     private List<Move> moveset;
 
-    // -- CONSTRUTOR --
-    // Recebe todos os parametros do pai e os seus proprios
-    public Pokemon(
-            int nationalNumber, String speciesName, int level, String gender,
-            String nickname, boolean isShiny, String type1, String type2, Map<String, Integer> stats) {
-        super(nationalNumber, speciesName, level, gender, nickname, isShiny, stats);
 
-        // Definindo atributos dessa classe
+    public Pokemon(int nationalNumber, String speciesName, int level,
+                   String gender, String nickname, boolean isShiny,
+                   String type1, String type2) {
+
+        super(nationalNumber, speciesName, level, gender, nickname, isShiny);
         this.type1 = type1;
         this.type2 = type2;
-
-        // Inicializar 'this.moveset' como um novo ArrayList<>()
         this.moveset = new ArrayList<>();
     }
 
-    // --- SOBRESCRITA DE METODO (@Override) ---
-    // Modifica o displaySummary do pai
+    public String getType1() { return type1; }
+    public String getType2() { return type2; }
+    public List<Move> getMoveset() { return moveset; }
 
-    @Override // Anotação para o java entender que é uma sobrescrita
-    public String displaySummary() {
-        String baseSummary = super.displaySummary(); // Chama metodo 'displaySummary()' da classe PAI (super).
+    public void setType1(String type1) { this.type1 = type1; }
+    public void setType2(String type2) { this.type2 = type2; }
 
-        String fullSummary = baseSummary + "\n";
-        fullSummary += " Tipo: " + this.type1;
+    @Override
+    public void calcularStats(Scanner sc) {
+        Map<String, Integer> stats = new HashMap<>();
 
-        // If para verificar se o type 2 está vazio
-        if (this.type2 != null && !this.type2.isEmpty()){
-            fullSummary += "/" + this.type2;// Se não for vazio, vai adicionar o type2 no summary
-        }
+        System.out.println("Digite os stats de " + getNickname()
+                + " (Lvl " + getLevel() + "):");
 
-        // Os Stats serão acrescentados
-        fullSummary += "\n Stats: " + getStats().toString();
+        System.out.print("HP: ");
+        stats.put("HP", sc.nextInt());
 
-        return fullSummary;
+        System.out.print("Attack: ");
+        stats.put("Attack", sc.nextInt());
+
+        System.out.print("Defense: ");
+        stats.put("Defense", sc.nextInt());
+
+        System.out.print("Sp. Attack: ");
+        stats.put("SpAtk", sc.nextInt());
+
+        System.out.print("Sp. Defense: ");
+        stats.put("SpDef", sc.nextInt());
+
+        System.out.print("Speed: ");
+        stats.put("Speed", sc.nextInt());
+
+        setStats(stats);
+        System.out.println("Stats registrados para " + getNickname() + "!\n");
     }
 
-    // --- METODO ESPECIFICO ---
-    // Metodo da classe Pokemon
-     // Metodo que adiciona um 'Move' ao moveset, com limite de 4
+    @Override
+    public String displaySummary() {
+        String base = super.displaySummary();
+        String types;
+
+        if (type2 == null || type2.isEmpty()) {
+            types = "[" + type1 + "]";
+        } else {
+            types = "[" + type1 + "/" + type2 + "]";
+        }
+
+        return base + " " + types;
+    }
 
     public void learnMove(Move newMove) {
-
-        if (this.moveset.size() < 4){
+        if (this.moveset.size() < 3) {
             this.moveset.add(newMove);
             System.out.println(this.getNickname() + " aprendeu " + newMove.getMoveName() + "!");
-        }
-        else {
+        } else {
             System.out.println(this.getNickname() + " já sabe 4 ataques!");
         }
     }
