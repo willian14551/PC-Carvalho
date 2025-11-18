@@ -20,19 +20,19 @@ public class Box {
     }
 
     // Box com capacidade de 30 pokemons
-    int tamanhoMax = 30;
-    ArrayList<PokemonBase> pokemonInBox = new ArrayList<PokemonBase>(tamanhoMax);
+    int tamanhoMaxBox = 30;
+    ArrayList<PokemonBase> pokemonInBox = new ArrayList<>(tamanhoMaxBox);
 
     // Mostra tudo da lista
     public void mostrarNaBox(){
         System.out.println("==============");
         if (pokemonInBox.isEmpty()){
-            System.out.println();
+            System.out.println("A Box está vazia!");
         } else {
             int i =0;
             for (PokemonBase PB : pokemonInBox){
                 System.out.println(getBoxName());
-                System.out.println((i++)+". "+pIB.getSpeciesName);
+                System.out.println((i++)+". "+PB.getSpeciesName);
             }
         }
         System.out.println("==============");
