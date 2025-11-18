@@ -29,7 +29,7 @@ public class Box {
             int i =0;
             for (PokemonBase PB : pokemonInBox){
                 System.out.println(getBoxName());
-                System.out.println((i++)+". "+PB.getSpeciesName);
+                //System.out.println((i++)+". "+PB.getSpeciesName);
             }
         }
         System.out.println("==============");
@@ -39,8 +39,6 @@ public class Box {
     public void addPokemon (PokemonBase pokemon){
         if (pokemonInBox.size() > 30){
             System.out.println("A Box '"+getBoxName()+"' está cheia!");
-        } else {
-            
         }
     }
 

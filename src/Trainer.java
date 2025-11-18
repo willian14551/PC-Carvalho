@@ -1,19 +1,26 @@
-public class Trainer extends Player{
+public class Trainer extends Player {
     private int badges;
-    private StorageSystem storage;
+    //private StorageSystem storage;
 
     // Construtores
-    public Trainer(){}
-    public Trainer(String nome, int badges, StorageSystem storage){
+    public Trainer() {
+    }
+
+    public Trainer(String nome, int badges) {
         super(nome);
-        this.badges=badges;
-        this.storage=storage;
+        this.badges = badges;
+        //this.storage=storage;
     }
 
     // Getters
-    public int getBadges() { return badges; }
-    public StorageSystem getStorage() { return storage; }
+    public int getBadges() {
+        return badges;
+    }
+    //public StorageSystem getStorage() { return storage; }
 
     // Setters
-    public void setBadges(int badges) { this.badges = badges; }
-    public void setStorage (storageSystem storage){ this.storage=storage; }
+    public void setBadges(int badges) {
+        this.badges = badges;
+    }
+    //public void setStorage (storageSystem storage){ this.storage=storage; }
+}
