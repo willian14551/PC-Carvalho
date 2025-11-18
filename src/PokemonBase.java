@@ -12,8 +12,7 @@ public abstract class PokemonBase {
     private boolean isShiny;
     private Map<String, Integer> stats;
 
-    public PokemonBase(int nationalNumber, String speciesName, int level,
-                       String gender, String nickname, boolean isShiny) {
+    public PokemonBase(int nationalNumber, String speciesName, int level, String gender, String nickname, boolean isShiny) {
         this.nationalNumber = nationalNumber;
         this.speciesName = speciesName;
         this.level = level;
