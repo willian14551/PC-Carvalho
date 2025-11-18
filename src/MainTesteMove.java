@@ -1,12 +1,12 @@
-import java.util.ArrayList;
+import java.io.*;
 
 public class MainTesteMove {
     public static void main(String[] args) {
-        Move move = new Move("Bola de fogo", "Fogo", 30, 10);
-        Move move2 = new Move("Jato de água", "Água", 25, 10);
+        PokemonCsvLoader csvLoader = new PokemonCsvLoader();
 
-        move.movesPoke();
-        move2.movesPoke();
+        csvLoader.lerCsvTotal("src/pokedex.csv");
+
 
     }
+
 }
