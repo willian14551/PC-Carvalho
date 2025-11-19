@@ -1,0 +1,11 @@
+PokemonBase.class
+MainApp$1.class
+Box.class
+MainApp$2.class
+MainApp.class
+Trainer.class
+Player.class
+PokemonCsvLoader.class
+BoxFullException.class
+StorageSystem.class
+Pokemon.class
